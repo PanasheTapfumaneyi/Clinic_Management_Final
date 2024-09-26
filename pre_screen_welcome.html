@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/fonts/Aptos.ttf') format('ttf');
+        }
+
+        body {
+            font-family: 'Aptos';
+        }
+
+        /* Simple animation */
+        .fade-enter {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .fade-enter-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .fade-exit {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-exit-active {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+    </style>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+
+<body class="h-screen w-screen bg-cover bg-center bg-no-repeat"
+    style="background-image: url('../assets/MainBackground.png');">
+
+    <!-- Pre-Screening Section -->
+    <div id="pre-screening" class="flex flex-col items-start px-72 justify-center h-full space-y-6">
+        <h1 class="text-black text-6xl font-bold">ONLINE CLINIC</h1>
+        <h2 class="text-2xl text-gray-700">Let's Start With Your Pre-Screening</h2>
+        <h3 class="text-lg text-gray-600">These questions will help in determining the consultation</h3>
+        <button id="get-started-btn" type="button"
+            class="text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-12 py-4 me-2 mb-2 dark:bg-primary dark:hover:bg-darkprimary focus:outline-none dark:focus:ring-blue-800">Get
+            Started</button>
+    </div>
+
+    <!-- Questionnaire Section (Initially Hidden) -->
+    <div id="questionnaire" class="hidden bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto mt-16">
+        <h1 class="text-2xl font-bold text-center mb-8">Pre-Screening Questions</h1>
+
+        <!-- Questions Container -->
+        <div id="question-container" class="transition-all duration-500">
+
+            <!-- Question 1 -->
+            <div class="question fade-enter" id="question-1">
+                <h2 class="text-xl font-semibold mb-4">1. Do you have a chronic condition lasting more than 3 months
+                    that has been diagnosed by a
+                    doctor? (e.g. chronic pain, anxiety, depression, insomnia, etc.)</h2>
+                <div class="space-y-2">
+                    <label class="block">
+                        <input type="radio" name="question1" value="Yes" class="mr-2"> Yes
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question1" value="FirstQuestionNo" class="mr-2"> No
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question fade-enter hidden" id="question-2">
+                <h2 class="text-xl font-semibold mb-4">2. Have you tried conventional prescription medication for your
+                    condition?</h2>
+                <div class="space-y-2">
+                    <label class="block">
+                        <input type="radio" name="question2" value="Yes" class="mr-2"> Yes
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question2" value="SecondQuestionNo" class="mr-2"> No
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question fade-enter hidden" id="question-3">
+                <h2 class="text-xl font-semibold mb-4">3. Has the medication been unsuccessful in fully treating your
+                    symptoms, or does it cause adverse
+                    side effects?</h2>
+                <div class="space-y-2">
+                    <label class="block">
+                        <input type="radio" name="question3" value="Yes" class="mr-2"> Yes
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question3" value="ThirdQuestionNo" class="mr-2"> No
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question fade-enter hidden" id="question-4">
+                <h2 class="text-xl font-semibold mb-4">4. Do you have any of the following conditions?</h2>
+                <div class="space-y-2">
+                    <label class="block">
+                        <input type="radio" name="question4" value="FourthQuestionNo" class="mr-2"> Active psychosis
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question4" value="FourthQuestionNo" class="mr-2"> Drug dependence or
+                        substance abuse
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question4" value="FourthQuestionNo" class="mr-2"> Cardio pulmonary
+                        disease
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question4" value="FourthQuestionNo" class="mr-2"> Pregnant or
+                        breastfeeding
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question4" value="Yes" class="mr-2"> None of the above
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question fade-enter hidden" id="question-5">
+                <h2 class="text-xl font-semibold mb-4">5. Do you have a history of schizophrenia, bipolar type 1 and 2
+                    disorder or have experienced
+                    psychosis?</h2>
+                <div class="space-y-2">
+                    <label class="block">
+                        <input type="radio" name="question5" value="FifthQuestionNo" class="mr-2"> Yes
+                    </label>
+                    <label class="block">
+                        <input type="radio" name="question5" value="Yes" class="mr-2"> No
+                    </label>
+                </div>
+            </div>
+
+            <!-- Thank You Message -->
+            <div id="thank-you" class="hidden text-center">
+                <h2 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-check" style="color: #63E6BE;"></i></h2>
+                <h2 class="text-2xl font-semibold mb-4">Thank you for completing the Pre-Screening Questions.</h2>
+                <p class="text-gray-600">Based on
+                    the information you provided, we can confirm that you are ELIGABLE for a consultation.</p>
+
+                <button id="book-consultation-btn"
+                    class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300">Book
+                    With Nurse Practitioner</button>
+                <button id="gp-booking-btn"
+                    class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300">Book
+                    with a GP</button>
+            </div>
+
+            <!-- Custom Message for FirstNo -->
+            <div id="FirstMessage" class="hidden text-center">
+                <p class="text-gray-600 mb-4">Unfortunately, you are likely not suitable for plant medicine treatment.
+                    In order to be
+                    eligible for medicinal cannabis treatment, a patient needs to have been diagnosed with a
+                    chronic condition by a doctor.</p>
+                <!-- Back to Home Button -->
+                <button id="back-home-btn"
+                    class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300">Back
+                    to Home</button>
+                <button id="gp-booking-btn"
+                    class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300">Book
+                    with a GP</button>
+            </div>
+
+            <div id="SecondMessage" class="hidden text-center">
+                <p class="text-gray-600 mb-4">Unfortunately, you are likely not suitable for plant medicine treatment.
+                    In order to be
+                    eligible for medicinal cannabis treatment, you need to have tried (or be currently using) a
+                    prescribed medication to help treat your symptoms.</p>
+                <!-- Back to Home Button -->
+                <button id="back-home-btn"
+                    class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300">Back
+                    to Home</button>
+                <button id="gp-booking-btn"
+                    class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300">Book
+                    with a GP</button>
+            </div>
+
+            <div id="ThirdMessage" class="hidden text-center">
+                <p class="text-gray-600 mb-4">Unfortunately, you are likely not suitable for plant medicine treatment.
+                    In order to be
+                    eligible for medicinal cannabis treatment, your previous medication needs to have been
+                    unsuccessful or have undesired side-effects.</p>
+                <!-- Back to Home Button -->
+                <button id="back-home-btn"
+                    class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300">Back
+                    to Home</button>
+                <button id="gp-booking-btn" class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition
+                duration-300">Book
+                    with a GP</button>
+            </div>
+
+            <div id="FourthMessage" class="hidden text-center">
+                <p class="text-gray-600 mb-4">Unfortunately, you are likely not suitable for plant medicine treatment.
+                </p>
+                <!-- Back to Home Button -->
+                <button id="back-home-btn-4" class="bg-blue-600 text-white py-2 px-4 rounded-lg">Back to Home</button>
+                <button id="gp-booking-btn" class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition
+            duration-300">Book
+                    with a GP</button>
+            </div>
+
+
+            <div id="FifthMessage" class="hidden text-center">
+                <p class="text-gray-600 mb-4">Unfortunately, you are likely not suitable for plant medicine treatment.
+                </p>
+                <!-- Back to Home Button -->
+                <button id="back-home-btn-5" class="bg-blue-600 text-white py-2 px-4 rounded-lg">Back to Home</button>
+                <button id="gp-booking-btn" class="bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition
+                duration-300">Book
+                    with a GP</button>
+            </div>
+        </div>
+
+
+
+        <!-- Navigation Buttons -->
+        <div class="mt-8 flex justify-between">
+            <button id="prev-btn" class="bg-gray-400 text-white py-2 px-4 rounded-lg hidden">Previous</button>
+            <button id="next-btn" class="bg-blue-600 text-white py-2 px-4 rounded-lg">Next</button>
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+        const preScreening = document.getElementById('pre-screening');
+        const questionnaire = document.getElementById('questionnaire');
+        const getStartedBtn = document.getElementById('get-started-btn');
+
+        const questions = document.querySelectorAll('.question');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const thankYou = document.getElementById('thank-you');
+        const QuestionOneMessage = document.getElementById('FirstMessage');
+        const QuestionTwoMessage = document.getElementById('SecondMessage');
+        const QuestionThreeMessage = document.getElementById('ThirdMessage');
+        const QuestionFourMessage = document.getElementById('FourthMessage');
+        const QuestionFiveMessage = document.getElementById('FifthMessage');
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            questions.forEach((question, i) => {
+                question.classList.add('hidden');
+                if (i === index) {
+                    question.classList.remove('hidden');
+                    question.classList.add('fade-enter-active');
+                }
+            });
+
+            // Update button text
+            if (index === 0) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
+
+            if (index === questions.length - 1) {
+                nextBtn.textContent = 'Submit';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+        }
+
+        function validateAnswer() {
+            const inputs = document.querySelectorAll(`#question-${currentQuestion + 1} input[type="radio"]`);
+            let selectedAnswer = '';
+
+            inputs.forEach(input => {
+                if (input.checked) {
+                    selectedAnswer = input.value;
+                }
+            });
+
+            return selectedAnswer;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const selectedAnswer = validateAnswer();
+
+            if (!selectedAnswer) {
+                alert('Please select an answer');
+                return;
+            }
+
+            // Custom logic for Question 1 (No)
+            if (currentQuestion === 0 && selectedAnswer === 'FirstQuestionNo') {
+                questions[currentQuestion].classList.add('hidden');
+                QuestionOneMessage.classList.remove('hidden');
+                attachBackHomeListener(); // Attach listener for "Back to Home"
+                attachGPBookingListener();
+                return;
+            } else if (currentQuestion === 1 && selectedAnswer === 'SecondQuestionNo') {
+                questions[currentQuestion].classList.add('hidden');
+                QuestionTwoMessage.classList.remove('hidden');
+                attachBackHomeListener(); // Attach listener for "Back to Home"
+                attachGPBookingListener();
+                return;
+            }
+            else if (currentQuestion === 2 && selectedAnswer === 'ThirdQuestionNo') {
+                questions[currentQuestion].classList.add('hidden');
+                QuestionThreeMessage.classList.remove('hidden');
+                attachBackHomeListener(); // Attach listener for "Back to Home"
+                attachGPBookingListener();
+                return;
+            }
+            else if (currentQuestion === 3 && selectedAnswer === 'FourthQuestionNo') {
+                questions[currentQuestion].classList.add('hidden');
+                QuestionFourMessage.classList.remove('hidden');
+                attachBackHomeListener(); // Attach listener for "Back to Home"
+                attachGPBookingListener();
+                return;
+            }
+            else if (currentQuestion === 4 && selectedAnswer === 'FifthQuestionNo') {
+                questions[currentQuestion].classList.add('hidden');
+                QuestionFiveMessage.classList.remove('hidden');
+                attachBackHomeListener(); // Attach listener for "Back to Home"
+                attachGPBookingListener();
+                return;
+            }
+
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion(currentQuestion);
+            } else {
+                questions[currentQuestion - 1].classList.add('hidden');
+                thankYou.classList.remove('hidden');
+                attachBookNowListener(); // Attach listener for "Book Consultation"
+                attachGPBookingListener();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        showQuestion(0);
+
+        // Dynamically attach event listeners when elements are visible
+        function attachBackHomeListener() {
+            const backHomeBtns = document.querySelectorAll('[id^=back-home-btn]');
+            backHomeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    window.location.href = '/'; // Redirect to the home page
+                });
+            });
+        }
+        function attachGPBookingListener() {
+            const backHomeBtns = document.querySelectorAll('[id^=gp-booking-btn]');
+            backHomeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    window.location.href = 'signup.php'; // Redirect to the home page
+                });
+            });
+        }
+
+        function attachBookNowListener() {
+            const bookNowBtn = document.getElementById('book-consultation-btn');
+            if (bookNowBtn) {
+                bookNowBtn.addEventListener('click', () => {
+                    window.location.href = 'signup-practitioner.php'; // Redirect to the booking page
+                });
+            }
+        }
+
+        // Attach the start button listener
+        getStartedBtn.addEventListener('click', () => {
+            preScreening.classList.add('hidden');
+            questionnaire.classList.remove('hidden');
+        });
+    </script>
+
+    <script src="https://kit.fontawesome.com/3ac512e62a.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
