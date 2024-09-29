@@ -234,9 +234,10 @@ $url = "https://zoom.us/oauth/authorize?response_type=code&client_id=".CLIENT_ID
                                     //echo $sql2;
                                     $result12 = $database->query($sql2);
                                     $apponum = $result12->num_rows + 1;
+                                    $_SESSION['apponum'] = $apponum; 
 
                                     echo '
-                                        <form action="booking_test.php?id='.$scheduleid.'" method="post">
+                                        <form action="booking-complete.php?id='.$scheduleid.'" method="post">
                                             <input type="hidden" name="scheduleid" value="' .
                                         $scheduleid .
                                         '" >

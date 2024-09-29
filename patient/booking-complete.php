@@ -1,40 +1,36 @@
 <?php
 
-    //learn from w3schools.com
+// Start the session
+session_start();
 
-    session_start();
-
-    if(isset($_SESSION["user"])){
-        if(($_SESSION["user"])=="" or $_SESSION['usertype']!='p'){
-            header("location: ../login.php");
-        }else{
-            $useremail=$_SESSION["user"];
-        }
-
-    }else{
+if (isset($_SESSION["user"])) {
+    if ($_SESSION["user"] == "" || $_SESSION['usertype'] != 'p') {
         header("location: ../login.php");
+    } else {
+        $useremail = $_SESSION["user"];
     }
-    
+} else {
+    header("location: ../login.php");
+}
 
-    //import database
-    include("../connection.php");
-    $userrow = $database->query("select * from patient where pemail='$useremail'");
-    $userfetch=$userrow->fetch_assoc();
-    $userid= $userfetch["pid"];
-    $username=$userfetch["pname"];
+// Import database
+include("../connection.php");
+$userrow = $database->query("SELECT * FROM patient WHERE pemail='$useremail'");
+$userfetch = $userrow->fetch_assoc();
+$userid = $userfetch["pid"];
+$username = $userfetch["pname"];
+
+// Get the scheduleid from session
+$scheduleid = $_SESSION['scheduleID']; // Make sure this session variable is set somewhere in your code
+$apponum = $_SESSION['apponum'];
+$date = date('Y-m-d');
 
 
-    if($_POST){
-        if(isset($_POST["booknow"])){
-            $apponum=$_POST["apponum"];
-            $scheduleid=$_POST["scheduleid"];
-            $date=$_POST["date"];
-            $scheduleid=$_POST["scheduleid"];
-            $sql2="insert into appointment(pid,apponum,scheduleid,appodate) values ($userid,$apponum,$scheduleid,'$date')";
-            $result= $database->query($sql2);
-            //echo $apponom;
-            header("location: appointment.php?action=booking-added&id=".$apponum."&titleget=none");
-
-        }
+if($_POST){
+    if(isset($_POST["booknow"])){
+        $sql2="insert into appointment(pid,apponum,scheduleid,appodate) values ($userid,$apponum,$scheduleid,'$date')";
+        $result = $database->query($sql2);
+        header("location: booking_test.php?action=booking-added&id=".$apponum."&titleget=none");
     }
- ?>
+}
+?>

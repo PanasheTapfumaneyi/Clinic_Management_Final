@@ -77,6 +77,9 @@ function create_meeting($sessionTitle, $scheduledDate, $doctorEmail, $userEmail)
         echo "<br>";
         echo "Meeting Password: " . $meetingPassword;
 
+        header("Location: appointment.php?action=booking-added&id=".$apponum."&titleget=none");
+        exit; // Ensure the script stops after the redirect
+
     } catch(Exception $e) {
         if( 401 == $e->getCode() ) {
             $refresh_token = $db->get_refresh_token();

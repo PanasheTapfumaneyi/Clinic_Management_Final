@@ -35,6 +35,8 @@
     }else{
         header("location: ../login.php");
     }
+
+    $apponum = $_SESSION['apponum'];
     
 
     //import database
@@ -364,7 +366,7 @@
                         <h2>Booking Successfully.</h2>
                         <a class="close" href="appointment.php">&times;</a>
                         <div class="content">
-                        Your Appointment number is '.$id.'.<br><br>
+                        Your Appointment number is '.$apponum.'.<br><br>
                             
                         </div>
                         <div style="display: flex;justify-content: center;">
