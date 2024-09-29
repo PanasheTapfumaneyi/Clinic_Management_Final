@@ -35,6 +35,10 @@
     }else{
         header("location: ../login.php");
     }
+
+
+
+
     
 
     //import database
@@ -265,6 +269,7 @@ if ($paccounttype === "Practitioner") {
                                         $docname=$row["docname"];
                                         $scheduledate=$row["scheduledate"];
                                         $scheduletime=$row["scheduletime"];
+                                        $_SESSION['sessionID'] = $scheduleid; // Store it in session
 
                                         if($scheduleid==""){
                                             break;
