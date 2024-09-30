@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // Start the session
 session_start();
 
@@ -26,11 +27,10 @@ $apponum = $_SESSION['apponum'];
 $date = date('Y-m-d');
 
 
-if($_POST){
-    if(isset($_POST["booknow"])){
-        $sql2="insert into appointment(pid,apponum,scheduleid,appodate) values ($userid,$apponum,$scheduleid,'$date')";
-        $result = $database->query($sql2);
-        header("location: booking_test.php?action=booking-added&id=".$apponum."&titleget=none");
-    }
-}
+
+$sql2="insert into appointment(pid,apponum,scheduleid,appodate) values ($userid,$apponum,$scheduleid,'$date')";
+$result = $database->query($sql2);
+header("location: booking_test.php?action=booking-added&id=".$apponum."&titleget=none");
+
+
 ?>

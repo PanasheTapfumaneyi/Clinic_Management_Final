@@ -237,7 +237,7 @@ $url = "https://zoom.us/oauth/authorize?response_type=code&client_id=".CLIENT_ID
                                     $_SESSION['apponum'] = $apponum; 
 
                                     echo '
-                                        <form action="booking-complete.php?id='.$scheduleid.'" method="post">
+                                        <form action="payment.php" method="post">
                                             <input type="hidden" name="scheduleid" value="' .
                                         $scheduleid .
                                         '" >
