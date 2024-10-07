@@ -90,7 +90,7 @@ if($_POST){
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <label for="nic" class="form-label">NIC: </label>
+                    <label for="nic" class="form-label">MediCare Number: </label>
                 </td>
             </tr>
             <tr>
