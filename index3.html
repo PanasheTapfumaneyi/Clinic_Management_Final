@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <style>
+                @media (max-width: 768px) {
+            header .flex-1 ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            .text-sm {
+                text-align: center;
+                width: 100%;
+            }
+            .space-x-4 {
+                flex-direction: column;
+            }
+            .items-center {
+                justify-content: center;
+            }
+        }
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/fonts/Aptos.ttf') format('ttf'),
+        }
+
+        body {
+            font-family: 'Aptos';
+        }
+
+        /* Custom styles for dropdowns */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav {
+        order: 1; /* Put navigation below logo */
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .flex-1 {
+        flex: none; /* Prevent flex grow */
+    }
+
+    ul {
+        flex-direction: column; /* Stack navigation items */
+        align-items: center; /* Center navigation items */
+        width: 100%;
+    }
+
+    li {
+        margin-bottom: 0.5rem; /* Space out navigation items */
+    }
+}
+    </style>
+</head>
+
+    <!-- Banner -->
+    <div class="bg-secondary text-black py-1 px-6 flex items-center justify-between lg:justify-end flex-wrap">
+        <!-- Phone Number -->
+        <div class="text-sm">
+            <span class="mr-2">📞</span>
+            <a href="tel:+1234567890" class="hover:underline mr-10 font-bold">07 3367 0805</a>
+        </div>
+        <div class="text-sm">
+            <i class="fa-regular fa-envelope"></i>
+            <a href="mailto:support@telemedicare.com.au" class="hover:underline mr-10 font-bold">support@telemedicare.com.au</a>
+        </div>
+        <!-- Social Media Icons -->
+        <div class="flex space-x-4 text-xl mt-2 lg:mt-0">
+            <a href="https://facebook.com" class="hover:text-blue-500" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com" class="hover:text-blue-400" aria-label="X">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://instagram.com" class="hover:text-pink-500" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white text-black p-4 flex flex-wrap items-center justify-between relative">
+        <!-- Logo -->
+        <div class="flex flex-col items-center">
+            <a href="" class="text-2xl font-bold hover:text-gray-400">
+                <img src="assets/TelemedicareLogo.png" alt="Telemedicare Logo" class="w-24 h-10 mx-auto lg:mx-36">
+            </a>
+            <span class="text-sm text-gray-600 mt-1">Welcome To TeleMedicare</span>
+        </div>
+
+        
+
+        <div class="hidden lg:flex flex-col items-center">
+            <!-- Navigation -->
+            <nav class="relative flex-1 flex justify-center">
+                <ul class="flex space-x-4 lg:space-x-6">
+                    <li class="relative dropdown">
+                        <a href="#" class="hover:text-gray-400">Services</a>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-gray-800">
+                        </div>
+                    </li>
+                    <li class="relative dropdown">
+                        <a href="#" class="hover:text-gray-400">Doctors</a>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-gray-800">
+                            <a href="/page4" class="block px-4 py-2">Page 4</a>
+                        </div>
+                    </li>
+                    <li class="relative dropdown">
+                        <a href="#" class="hover:text-gray-400">Pre-Consultation Assessment</a>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-gray-800">
+                        </div>
+                    </li>
+                    <li class="relative dropdown">
+                        <a href="#" class="hover:text-gray-400">Medical Certificate</a>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-gray-800">
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Text Below Navigation -->
+            <div class="text-center mt-2 text-sm text-red-600">
+                If this is an emergency situation, call 000
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center space-x-4 mt-4 lg:mt-0">
+            <!-- Search Icon -->
+            <button onclick="toggleSearchBox()" class="relative">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div id="searchBox" class="hidden absolute top-8 right-0 mt-2 bg-white p-4 border border-gray-300">
+                    <input type="text" placeholder="Search..." class="p-2 border border-gray-300 rounded">
+                </div>
+            </button>
+            <!-- Cart Icon -->
+            <button onclick="toggleCart()" class="relative">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <div id="cartContents" class="hidden absolute top-8 right-0 mt-2 bg-white p-4 border border-gray-300">
+                    <p>Your cart is empty.</p>
+                </div>
+            </button>
+            <!-- Profile Icon -->
+            <a href="/profile" class="text-black hover:text-gray-400">
+                <i class="fa-regular fa-user"></i>
+            </a>
+            <!-- Appointment Button -->
+            <a href="pre_screen_welcome.html">
+                <button class="bg-primary text-white py-2 px-4 rounded hover:bg-secondary">
+                    BOOK APPOINTMENT
+                </button>
+            </a>
+            <!-- Drawer Toggle Button for smaller screens -->
+    <div class="lg:hidden">
+        <button onclick="toggleDrawer()" class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black hover:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Drawer for mobile view -->
+    <div id="drawer" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-end lg:hidden">
+        
+        
+        <div class="bg-white w-64 p-4">
+            <!-- Drawer Close Button -->
+            <button onclick="toggleDrawer()" class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black hover:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+             <!-- Actions -->
+<div class="flex items-center justify-center space-x-6 mt-4 text-gray-700">
+    <!-- Search Icon -->
+    <button onclick="toggleSearchBox()" class="relative hover:text-primary transition duration-300 ease-in-out">
+        <i class="fa-solid fa-magnifying-glass text-xl"></i>
+    </button>
+    <!-- Cart Icon -->
+    <button onclick="toggleCart()" class="relative hover:text-primary transition duration-300 ease-in-out">
+        <i class="fa-solid fa-cart-shopping text-xl"></i>
+    </button>
+    <!-- Profile Icon -->
+    <a href="/profile" class="hover:text-primary transition duration-300 ease-in-out">
+        <i class="fa-regular fa-user text-xl"></i>
+    </a>
+</div>
+
+
+            <!-- Navigation -->
+<nav class="flex flex-col space-y-4 text-gray-700 font-medium">
+    <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-primary hover:text-white rounded-lg transition duration-300 ease-in-out shadow-sm">
+        Services
+    </a>
+    <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-primary hover:text-white rounded-lg transition duration-300 ease-in-out shadow-sm">
+        Doctors
+    </a>
+    <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-primary hover:text-white rounded-lg transition duration-300 ease-in-out shadow-sm">
+        Pre-Consultation Assessment
+    </a>
+    <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-primary hover:text-white rounded-lg transition duration-300 ease-in-out shadow-sm">
+        Medical Certificate
+    </a>
+</nav>
+
+
+            <!-- Emergency text -->
+            <div class="text-center mt-4 text-sm text-red-600">
+                If this is an emergency situation, call 000
+            </div>
+
+         
+            <!-- Appointment Button -->
+            <a href="pre_screen_welcome.html">
+                <button class="bg-primary text-white py-2 px-4 rounded hover:bg-secondary justify-center">
+                    BOOK APPOINTMENT
+                </button>
+            </a>
+        </div>
+    </div>
+        </div>
+    </header>
+
+    <!-- Who We Are Section -->
+    <section id="section2" class="bg-cover bg-center parallax py-24 h-full"
+        style="background-image: url('assets/clinic-background.jpg');">
+        <div class=" bg-opacity-50 py-10">
+            <div class="max-w-7xl mx-auto px-6 lg:flex lg:items-center">
+
+                <div class="lg:w-3/4 text-white">
+                    <h2 class="text-1xl font-bold text-secondaryContent">WELCOME TO THE ONLINE CLINIC</h2>
+                    <h2 class="text-7xl font-bold text-black">YOUR HEALTH,</h2>
+                    
+                    <!-- Container for the blue boxes -->
+                    <div class="flex space-x-4 mt-6">
+                        <!-- First blue box -->
+                        <div class="bg-secondary text-black p-6 w-1/2 resize-none rounded-lg mt-5">
+                            <h3 class="text-lg font-bold mb-4">Opening Hours</h3>
+                            <div class="grid grid-cols-1 text-black w-full">
+                                <p>- TeleMedicare can be accessed 24/7</p>
+                                <p>- Normal Business Hours are:</p>
+                                <p>- Monday to Friday from 08.00AM to 07.00PM</p>
+                                <p>- Some Doctors are available after business hours and on weekends</p>
+                                <p>- Check available doctors</p>
+                       
+                            </div>
+                        </div>
+                        
+                        <!-- Second blue box -->
+                        <div class="bg-secondary text-black p-6 w-1/2 resize-none rounded-lg mt-5">
+                            <h3 class="text-lg font-bold mb-4">Services We Provide</h3>
+                            <div class="grid grid-cols-1 gap-4">
+                                <p>General Medicines</p>
+                                <p>Mental health</p>
+                                <p>Women's health</p>
+                                <p>Diabetes</p>
+                                <p>Alternative medicines</p>
+                                <p>Men's health</p>
+                                <p>Pain management</p>
+                                
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="bg-secondaryDark p-6 w-full rounded-lg mt-5 mb-5 flex justify-center">
+                        <h3 class="text-lg text-white font-bold">Check Availability: </h3>
+                        <div class="w-3/4 h-1/2 bg-secondary grid grid-cols-7">
+                            <div class="w-4/5 h-full border-2 border-black text-center"><p><i class="fa-solid fa-arrow-down"></i>Mon</p></div>
+                            <div class="w-4/5 h-full border-2 border-black text-center"><p><i class="fa-solid fa-arrow-down"></i>Tue</p></div>
+                            <div class="w-4/5 h-full border-2 border-black text-center"><p><i class="fa-solid fa-arrow-down"></i>Wed</p></div>
+                            <div class="w-4/5 h-full border-2 border-black text-center"><p><i class="fa-solid fa-arrow-down"></i>Thu</p></div>
+                            <div class="w-4/5 h-full border-2 border-black text-center"><p><i class="fa-solid fa-arrow-down"></i>Fri</p></div>
+                            <div class="w-4/5 h-full border-2 border-black text-center"><p><i class="fa-solid fa-arrow-down"></i>Sat</p></div>
+                            <div class="w-4/5 h-full border-2 border-black text-center"><p><i class="fa-solid fa-arrow-down"></i>Sun</p></div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="lg:w-96 mt-10 lg:mt-0 lg:ml-16"></div> -->
+                <!-- <img src="assets/FrontPicture1.png" alt="Who we are image" class="w-[100px] h-[200px] fade-out-image"> -->
+                <!-- Box with Times -->
+                <div class="bg-secondary mx-10 p-5 rounded-lg shadow-md w-[450px] h-[450px] mt-10">
+                   
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Choose a service</h2>
+                        <h2 class="text-lg mb-2">General Practitioner (GP)</h2>
+                        <h2 class="text-lg mb-2">Occupational Therapist (OT)</h2>
+                        <h2 class="text-lg mb-2">Speech Pathologist</h2>
+                        <h2 class="text-lg mb-2">Physiotherapy</h2>
+                        <h2 class="text-lg mb-2">Nurse Practitioner</h2>
+                  
+                        
+                        <h2 class="text-lg font-bold mb-2 text-red-500">Please note consultations after business hours on Saturday and Sunday incur a higher fee</h2>
+                        <div class="mt-6 flex justify-center">
+                            <button type="button"
+                            class="text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-12 py-4 me-2 mb-2 dark:bg-primary dark:hover:bg-darkprimary focus:outline-none dark:focus:ring-blue-800">BOOK APPOINTMENT</button>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <div class="container mx-auto p-8">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            
+            <h1 class="text-4xl font-bold mt-2">Thank you for choosing TeleMedicare</h1>
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+            <!-- Working Hour Section -->
+            <div class="bg-blue-700 text-white p-8 rounded-lg shadow-lg" >
+                <img src="/assets/Doctor.png" alt="Doctor" class="w-full h-auto object-cover rounded-lg">
+            </div>
+
+            <!-- Doctor Info Section -->
+            <div class="lg:col-span-2 flex items-center justify-between bg-white p-8 rounded-lg shadow-lg">
+                
+                <!-- Left Side -->
+                <div>
+                    <h3 class="text-xl font-bold">TeleMedicare: Your 24/7 Health Companion</h3>
+                    <p class="text-blue-600">
+                        TeleMedicare offers a safe and convenient way to access quality healthcare from the comfort of your own home. With a team of experienced general practitioners, nurse practitioners, and allied health professionals available 24/7, you can get the care you need whenever it suits you.
+                        Why choose TeleMedicare?</p>
+                    <p class="text-2xl font-cursive mt-4 mb-8">Why choose TeleMedicare?</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-center"><span class="text-orange-500 mr-2">✔</span>Convenience: No more waiting rooms or long commutes. Connect with a healthcare provider from anywhere with an internet connection. -Accessibility: Our 24/7 availability means you can get help when you need it most, even outside of regular business hours.
+                        </li>
+                        <li class="flex items-center"><span class="text-orange-500 mr-2">✔</span>Safety: Our secure platform ensures your privacy and confidentiality. Your personal information is protected, and our healthcare professionals are committed to providing safe and effective care.</li>
+                        <li class="flex items-center"><span class="text-orange-500 mr-2">✔</span>Quality: Our team consists of highly qualified healthcare professionals who are dedicated to providing you with the best possible care. -Affordability: TeleMedicare offers competitive pricing, making it a cost-effective option for your healthcare needs.</li>
+                        <li class="flex items-center"><span class="text-orange-500 mr-2">✔</span>Affordability. TeleMedicare offers competitive pricing, making it a cost-effective option for your healthcare needs.</li>
+                        
+                    </ul>
+                    <p class="font-cursive mt-4 mb-8">Whether you're dealing with a minor ailment, need a prescription refill, or require ongoing management of a chronic condition, TeleMedicare is
+                        here to help. Experience the convenience, accessibility, and quality care of TeleMedicare today</p>
+                </div>
+
+                
+            </div>
+        </div>
+
+    </div>
+    <div class="container mx-auto p-8">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            
+            <h1 class="text-4xl font-bold mt-2">Meet Our Health Care Professional</h1>
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+            <!-- Working Hour Section -->
+
+            <div class=" text-white p-8 rounded-lg shadow-lg grid row-3" >
+                <img src="/assets/Doctor.png" alt="Doctor" class="w-full h-auto object-cover rounded-lg">
+                <h1 class="text-center font-bold text-black text-2xl">Gunner Peha</h1>
+                <h1 class="text-center text-gray-500">CARDIOLOGIST</h1>
+            </div>
+            <div class=" text-white p-8 rounded-lg shadow-lg grid row-3" >
+                <img src="/assets/Doctor.png" alt="Doctor" class="w-full h-auto object-cover rounded-lg">
+                <h1 class="text-center font-bold text-black text-2xl">Ayden Leabow</h1>
+                <h1 class="text-center text-gray-500">GENERAL SURGEON</h1>
+            </div>
+            <div class=" text-white p-8 rounded-lg shadow-lg grid row-3" >
+                <img src="/assets/Doctor.png" alt="Doctor" class="w-full h-auto object-cover rounded-lg">
+                <h1 class="text-center font-bold text-black text-2xl">Jennifer Dumont</h1>
+                <h1 class="text-center text-gray-500">GENERAL SURGEON</h1>
+            </div>
+            
+
+            
+        </div>
+
+    </div>
+    <div class="container mx-auto p-8">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            
+            <h1 class="text-4xl font-bold mt-2">Read Our Latest News and Advices</h1>
+
+        </div>
+
+<!-- Article Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+    <!-- Article 1 -->
+    <div class="p-8 rounded-lg shadow-lg bg-white">
+        <img src="/assets/Doc1.jpg" alt="Doctor" class="w-full h-auto object-cover rounded-lg">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-semibold text-gray-700">Eye Care</h2>
+            <span class="text-gray-500">Sept 23, 2022</span>
+        </div>
+        <h1 class="text-xl font-bold text-black mb-2">Hello, this is an article</h1>
+        <a href="#" class="text-blue-500 hover:text-blue-700">Read More+</a>
+    </div>
+    
+    <!-- Article 2 -->
+    <div class="p-8 rounded-lg shadow-lg bg-white">
+        <img src="/assets/Doc2.jpg" alt="Doctor" class="w-full h-auto object-cover rounded-lg">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-semibold text-gray-700">General Surgery</h2>
+            <span class="text-gray-500">Oct 1, 2022</span>
+        </div>
+        <h1 class="text-xl font-bold text-black mb-2">Advances in Surgery Techniques</h1>
+        <a href="#" class="text-blue-500 hover:text-blue-700">Read More+</a>
+    </div>
+    
+    <!-- Article 3 -->
+    <div class="p-8 rounded-lg shadow-lg bg-white">
+        <img src="/assets/Doc3.jpg" alt="Doctor" class="w-full h-auto object-cover rounded-lg">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-semibold text-gray-700">Cardiology</h2>
+            <span class="text-gray-500">Oct 3, 2022</span>
+        </div>
+        <h1 class="text-xl font-bold text-black mb-2">Heart Health Tips for 2024</h1>
+        <a href="#" class="text-blue-500 hover:text-blue-700">Read More+</a>
+    </div>
+</div>
+
+<section class="bg-gray-50 min-h-screen w-2/3 flex justify-center items-center mt-10">
+    <div class="w-full max-w-6xl mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Testimonial text section -->
+      <div class="lg:col-span-2">
+        <h2 class="text-3xl font-semibold mb-4 text-center lg:text-left">What Our Patients Say</h2>
+        <p class="text-lg italic text-gray-600 mb-6 text-center lg:text-left">"It has been very effective, in my opinion. It has made everyone more relaxed in a very comfortable atmosphere, staff and patients included. We have always felt like family here, even more so now."</p>
+        <div class="flex items-center justify-center lg:justify-start mb-6">
+          <img src="/assets/Doc2.jpg" alt="Profile image" class="w-1/5 h-10 rounded-full">
+        </div>
+        <!-- Slider controls -->
+        <div class="flex justify-center lg:justify-start space-x-4">
+          <button class="bg-blue-600 text-white p-2 rounded-full">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button class="bg-blue-600 text-white p-2 rounded-full">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Statistics section -->
+      <div class="bg-blue-600 text-white p-8 rounded-lg flex flex-col justify-center items-center">
+        <div class="text-center">
+          <h3 class="text-4xl font-bold">2091+</h3>
+          <p class="text-lg">Satisfied Patients</p>
+        </div>
+        <div class="mt-8 text-center">
+          <h3 class="text-4xl font-bold">15+</h3>
+          <p class="text-lg">Health Sections</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        
+    </div>
+
+
+      
+      
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script src="main.js"></script> -->
+    <script src="https://kit.fontawesome.com/3ac512e62a.js" crossorigin="anonymous"></script>
+    <script>
+        function toggleSearchBox() {
+            document.getElementById('searchBox').classList.toggle('hidden');
+        }
+
+        function toggleCart() {
+            document.getElementById('cartContents').classList.toggle('hidden');
+        }
+
+        function toggleDrawer() {
+            document.getElementById('drawer').classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>

@@ -319,7 +319,7 @@
                             </tr>
                             <tr>
                                 <td class="label-td" colspan="2">
-                                    <label for="nic" class="form-label">NIC: </label>
+                                    <label for="nic" class="form-label">MediCare Number: </label>
                                 </td>
                             </tr>
                             <tr>
@@ -438,12 +438,12 @@
                                     
                                     <tr>
                                         <td class="label-td" colspan="2">
-                                            <label for="nic" class="form-label">NIC: </label>
+                                            <label for="nic" class="form-label">MediCare Number: </label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="label-td" colspan="2">
-                                            <input type="text" name="nic" class="input-text" placeholder="NIC Number" value="'.$nic.'" required><br>
+                                            <input type="text" name="nic" class="input-text" placeholder="MediCare Number" value="'.$nic.'" required><br>
                                         </td>
                                     </tr>
                                     <tr>
